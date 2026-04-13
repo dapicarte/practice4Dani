@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Persona {
-    private static final AtomicInteger contador = new AtomicInteger();
+    private static final AtomicInteger contador = new AtomicInteger(1);
     private int id;
     @NotNull(message = "el nombre no puede ser vacio")
     @Size(min = 4, max = 15, message = "caracteres entre 4 y 15")
@@ -29,6 +29,7 @@ public class Persona {
     private boolean titulo;
 
     public Persona(String nombre, String apellido, int edad, boolean titulo){
+        this.id=contador.getAndIncrement();
         this.nombre=nombre;
         this.apellido=apellido;
         this.edad=edad;
