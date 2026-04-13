@@ -3,8 +3,10 @@ package com.caso4.practice4Dani.repository;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.caso4.practice4Dani.model.Persona;
+import org.springframework.stereotype.Repository;
 
+import com.caso4.practice4Dani.model.Persona;
+@Repository
 public class PersonaRepository {
     private List<Persona> listaPersonas=new ArrayList<>();
 
