@@ -1,6 +1,5 @@
 package com.caso4.practice4Dani.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +35,18 @@ public class PersonaController {
         return ResponseEntity.ok(lista);        
     }
 
+    @GetMapping("buscar/{nombre}")
+    public Persona getNombre(@PathVariable int id){
+        return personaService.search(id);
+    }
+
+    @GetMapping("seed")
+    public String getSeed(){
+        personaService.seed();
+        return "Datos Cargados";
+    }
+
+    
     @PostMapping
     public ResponseEntity<?> postPersona(@Valid @RequestBody Persona persona){
         Persona p = personaService.create(persona);
@@ -49,4 +60,20 @@ public class PersonaController {
     public String deletePersona(@PathVariable int id){
         return personaService.delete(id);
     }
+
+    
+    // ----------------------------------------------------------------------------------------------------
+    
+    /**@GetMapping("reporte")
+    public List<TituloDTO> getTitulo(){
+        List<Persona> p = personaService.readAll();
+        List<TituloDTO> t = new ArrayList<>();
+        if(p==null){
+            return t;
+        }
+        for(Persona per : p){
+            t.add(personaService.tituloDTO(per));
+        }
+        return t;
+    }**/
 }

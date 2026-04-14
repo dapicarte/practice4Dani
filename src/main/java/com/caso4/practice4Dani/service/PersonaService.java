@@ -22,9 +22,29 @@ public class PersonaService {
     }
 
     public String delete(int id){
-        if(personaRepository.eliminar(id)){
-            return "La persona se ha eliminado";
+        Persona p = personaRepository.buscarId(id);
+        if(p!=null){
+            if(personaRepository.eliminar(id)){
+            return "La persona "+p.getNombre()+" se ha eliminado";
+            }
         }
         return "La persona NO se ha eliminado";
     }
+
+    public Persona search(int id){
+        return personaRepository.buscarId(id);
+    }
+    public void seed(){
+        personaRepository.seed();
+    }
+    /** public TituloDTO tituloDTO(Persona persona){
+        personaRepository.agregar(persona);
+        String estado;
+        if(persona.isTitulo()){
+            estado = "Persona con titulo";
+        } else {
+            estado = "Persona sin titulo";
+        }
+        return new TituloDTO(persona.getNombre(),persona.getApellido(), estado);
+    } **/
 }
